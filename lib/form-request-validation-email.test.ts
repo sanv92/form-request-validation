@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals'
-import { validateEmailRequest } from './form-request-validation'
+import { validateFormRequest } from './form-request-validation'
 import type { DefaultFieldOptions, FormRequest } from './types'
 import { ValidationRules } from './form-pattern'
 
@@ -36,7 +36,7 @@ const fieldOptions: DefaultFieldOptions = {
 describe('Validate Email Request', () => {
   it('should return no errors for a valid request', () => {
     const emailRequest = createRequest()
-    const errors = validateEmailRequest(emailRequest, fieldOptions)
+    const errors = validateFormRequest(emailRequest, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -44,7 +44,7 @@ describe('Validate Email Request', () => {
     const emailRequest = createRequest({
       emailFrom: undefined,
     })
-    const errors = validateEmailRequest(emailRequest as any, fieldOptions)
+    const errors = validateFormRequest(emailRequest as any, fieldOptions)
     expect(errors).toEqual([
       { field: 'emailFrom', errorMessage: 'Email is required.' },
     ])
@@ -54,7 +54,7 @@ describe('Validate Email Request', () => {
     const emailRequest = createRequest({
       emailFrom: 'invalid-email',
     })
-    const errors = validateEmailRequest(emailRequest, fieldOptions)
+    const errors = validateFormRequest(emailRequest, fieldOptions)
     expect(errors).toEqual([
       {
         field: 'emailFrom',
@@ -67,7 +67,7 @@ describe('Validate Email Request', () => {
     const emailRequest = createRequest({
       firstName: 'J',
     })
-    const errors = validateEmailRequest(emailRequest, fieldOptions)
+    const errors = validateFormRequest(emailRequest, fieldOptions)
     expect(errors).toEqual([
       {
         field: 'firstName',
@@ -80,7 +80,7 @@ describe('Validate Email Request', () => {
     const emailRequest = createRequest({
       firstName: undefined,
     })
-    const errors = validateEmailRequest(emailRequest, fieldOptions)
+    const errors = validateFormRequest(emailRequest, fieldOptions)
     expect(errors).toEqual([
       { field: 'firstName', errorMessage: 'First Name is required.' },
     ])
@@ -90,7 +90,7 @@ describe('Validate Email Request', () => {
     const emailRequest = createRequest({
       lastName: 'A very long last name that exceeds the maximum allowed length',
     })
-    const errors = validateEmailRequest(emailRequest, fieldOptions)
+    const errors = validateFormRequest(emailRequest, fieldOptions)
     expect(errors).toEqual([
       {
         field: 'lastName',
@@ -106,7 +106,7 @@ describe('Validate Email Request', () => {
       lastName: '',
       preferredContactMethod: ['unknown'] as any,
     })
-    const errors = validateEmailRequest(emailRequest, fieldOptions)
+    const errors = validateFormRequest(emailRequest, fieldOptions)
     expect(errors).toEqual([
       {
         field: 'emailFrom',
@@ -121,7 +121,7 @@ describe('Validate Email Request', () => {
 
   it('should return an error for an empty request', () => {
     const emailRequest = {}
-    const errors = validateEmailRequest(emailRequest as any, fieldOptions)
+    const errors = validateFormRequest(emailRequest as any, fieldOptions)
     expect(errors).toEqual([
       { field: 'emailFrom', errorMessage: 'Email is required.' },
       { field: 'firstName', errorMessage: 'First Name is required.' },

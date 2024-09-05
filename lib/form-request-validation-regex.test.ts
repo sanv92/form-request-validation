@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals'
-import { validateEmailRequest } from './form-request-validation'
+import { validateFormRequest } from './form-request-validation'
 import type { DefaultFieldOptions, FormRequest } from './types'
 import {
   LanguageValidationRules,
@@ -49,7 +49,7 @@ describe('Validate Email Request for Message and CompanyName fields', () => {
     ]
 
     validMessageRequests.forEach((request) => {
-      const errors = validateEmailRequest(request, fieldOptions)
+      const errors = validateFormRequest(request, fieldOptions)
       expect(errors).toEqual([])
     })
 
@@ -61,7 +61,7 @@ describe('Validate Email Request for Message and CompanyName fields', () => {
     ]
 
     invalidMessageRequests1.forEach((request) => {
-      const errors = validateEmailRequest(request, fieldOptions)
+      const errors = validateFormRequest(request, fieldOptions)
       if (request.message !== '') {
         expect(errors).toEqual([
           {
@@ -82,7 +82,7 @@ describe('Validate Email Request for Message and CompanyName fields', () => {
     ]
 
     invalidMessageRequests2.forEach((request) => {
-      const errors = validateEmailRequest(request, fieldOptions)
+      const errors = validateFormRequest(request, fieldOptions)
       if (request.message !== '') {
         expect(errors).toEqual([
           {
@@ -103,7 +103,7 @@ describe('Validate Email Request for Message and CompanyName fields', () => {
     ]
 
     validCompanyNameRequests.forEach((request) => {
-      const errors = validateEmailRequest(request, fieldOptions)
+      const errors = validateFormRequest(request, fieldOptions)
       expect(errors).toEqual([])
     })
 
@@ -117,7 +117,7 @@ describe('Validate Email Request for Message and CompanyName fields', () => {
     ]
 
     invalidCompanyNameRequests.forEach((request) => {
-      const errors = validateEmailRequest(request, fieldOptions)
+      const errors = validateFormRequest(request, fieldOptions)
       if (request.companyName !== '') {
         expect(errors).toEqual([
           {

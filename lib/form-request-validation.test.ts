@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals'
-import { validateEmailRequest } from './form-request-validation'
+import { validateFormRequest } from './form-request-validation'
 import {
   ValidationRules,
   LanguageValidationRules,
@@ -47,7 +47,7 @@ const fieldOptions: DefaultFieldOptions = {
 describe('Validate Request', () => {
   it('should pass with valid data', () => {
     const request = createRequest()
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -55,7 +55,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       emailFrom: '+37258433383',
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -63,7 +63,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       emailFrom: 'user@example.com',
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([
       {
         field: 'emailFrom',
@@ -76,7 +76,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       firstName: '',
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -84,7 +84,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       firstName: 'test',
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -92,7 +92,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       lastName: '',
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -100,7 +100,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       lastName: '~!@#$%^&*()_+}|}{:"?><M1234567890-=qwertyuiop[]',
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -108,7 +108,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       lastName: '',
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -116,7 +116,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       lastName: createNinesString(4),
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -124,7 +124,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       lastName: createNinesString(10),
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 
@@ -132,7 +132,7 @@ describe('Validate Request', () => {
     const request = createRequest({
       lastName: createNinesString(11),
     })
-    const errors = validateEmailRequest(request, fieldOptions)
+    const errors = validateFormRequest(request, fieldOptions)
     expect(errors).toEqual([])
   })
 })
