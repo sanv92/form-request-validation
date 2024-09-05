@@ -3,5 +3,5 @@ export {
   LanguageValidationRules,
   createValidationRegex,
 } from './form-pattern'
-export { validateEmailRequest } from './form-request-validation'
-export type { DefaultFieldOptions, FieldOptions, FormRequest } from './types.ts'
+export { validateFormRequest } from './form-request-validation'
+export type { DefaultFieldOptions, FieldOptions, FormRequest } from './types'

@@ -1,6 +1,6 @@
 import type { DefaultFieldOptions, FormRequest, FieldOptions } from './types'
 
-export const validateEmailRequest = <T extends object>(
+export const validateFormRequest = <T extends object>(
   emailRequest: FormRequest<T>,
   fieldOptions?: DefaultFieldOptions,
   defaultFieldOptions?: DefaultFieldOptions,
