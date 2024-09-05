@@ -1,13 +1,18 @@
 import type { DefaultFieldOptions, FormRequest, FieldOptions } from './types'
 
+interface ValidateFormRequest {
+  field: string
+  errorMessage: string
+}
+
 export const validateFormRequest = <T extends object>(
   emailRequest: FormRequest<T>,
   fieldOptions?: DefaultFieldOptions,
   defaultFieldOptions?: DefaultFieldOptions,
-): { field: keyof FormRequest<T>; errorMessage: string }[] => {
+): ValidateFormRequest[] => {
   const newOptions = { ...defaultFieldOptions, ...fieldOptions }
   return Object.entries(newOptions).flatMap(([fieldName]) => {
-    const fieldKey = fieldName as keyof FormRequest<T>
+    const fieldKey = fieldName
     const fieldOption = getFieldOptions<T>(
       fieldKey,
       fieldOptions,
@@ -24,7 +29,6 @@ const getFieldOptions = <T extends object>(
   customFieldOptions: DefaultFieldOptions | undefined,
   defaultFieldOptions: DefaultFieldOptions,
 ): FieldOptions => {
-  // Ensure the fieldName exists in customFieldOptions or defaultFieldOptions
   if (customFieldOptions && fieldName in customFieldOptions) {
     return customFieldOptions[fieldName as keyof DefaultFieldOptions]
   }

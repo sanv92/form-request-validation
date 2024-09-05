@@ -2,7 +2,7 @@
   "name": "form-request-validation",
   "description": "A simple and flexible form validation library that allows you to send any request and validate it against customizable field options. Easily define validation rules, patterns, and error handling for various forms and fields.",
   "private": false,
-  "version": "1.0.14",
+  "version": "1.0.15",
   "type": "commonjs",
   "keywords": [
     "form validation",
