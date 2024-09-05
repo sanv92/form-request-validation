@@ -16,7 +16,7 @@ yarn add form-request-validation
 ## Usage
 First, you need to configure your AWS credentials to allow the package to send emails using AWS SES. This can be done by setting up environment variables:
 ```typescript
-import { validateEmailRequest } from 'form-request-validation'
+import { validateEmailRequest, LanguageValidationRules, ValidationRules } from 'form-request-validation'
 
 const fieldOptions = {
   emailFrom: {
@@ -32,7 +32,7 @@ const fieldOptions = {
     name: 'Subject',
     required: false,
     validation: true,
-    pattern: createValidationRegex([LatinAlphabetPattern, EstonianPattern, SpecialCharacterPattern]),
+    pattern: createValidationRegex([LanguageValidationRules.LatinAlphabetPattern, LanguageValidationRules.EstonianPattern, ValidationRules.SpecialCharacterPattern]),
     errorMessage: 'Please provide a valid subject',
   },
 }
