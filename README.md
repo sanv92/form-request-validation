@@ -32,18 +32,28 @@ const fieldOptions = {
     name: 'Subject',
     required: false,
     validation: true,
-    pattern: createValidationRegex([LanguageValidationRules.LatinAlphabetPattern, LanguageValidationRules.EstonianPattern, ValidationRules.SpecialCharacterPattern]),
+    pattern: createValidationRegex(LanguageValidationRules.LatinAlphabetPattern, LanguageValidationRules.EstonianPattern, ValidationRules.SpecialCharacterPattern),
     errorMessage: 'Please provide a valid subject',
   },
 }
 
-const emailRequest = {
+const defaultFieldOptions = {
+  subject: {
+    name: 'Subject',
+    required: false,
+    validation: true,
+    pattern: createValidationRegex(LanguageValidationRules.LatinAlphabetPattern),
+    errorMessage: 'Please provide a valid subject',
+  }
+}
+
+const formRequest = {
   emailFrom: 'user@example.com',
   subject: 'Contact Us Form Submission',
   message: 'This is a test message from the contact form.',
 }
 
-const validationErrors = validateEmailRequest(fieldOptions)
+const validationErrors = validateEmailRequest(formRequest, fieldOptions, defaultFieldOptions)
 if (validationErrors.length > 0) {
   throw Error(JSON.stringify(validationErrors))
 }
