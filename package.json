@@ -2,7 +2,7 @@
   "name": "form-request-validation",
   "description": "A simple and flexible form validation library that allows you to send any request and validate it against customizable field options. Easily define validation rules, patterns, and error handling for various forms and fields.",
   "private": false,
-  "version": "1.0.6",
+  "version": "1.0.14",
   "type": "commonjs",
   "keywords": [
     "form validation",
@@ -33,7 +33,7 @@
   ],
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
-  "types": "./dist/types.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -76,8 +76,5 @@
     "typescript": "^5.5.4",
     "vite": "^5.4.2",
     "vite-plugin-dts": "^4.1.0"
-  },
-  "browser": {
-    "process": "./node_modules/process/browser.js"
   }
 }
